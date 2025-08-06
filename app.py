@@ -10,6 +10,8 @@ session = get_active_session()
 # Run a simple query
 df = session.sql("SELECT CURRENT_DATE AS today, CURRENT_VERSION() AS version").to_pandas()
 
+#Hello World!!!
+
 # Display results
 st.write("Snowflake Info:")
 st.dataframe(df)
