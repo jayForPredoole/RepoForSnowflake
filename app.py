@@ -1,14 +1,14 @@
 import streamlit as st
-import snowflake.connector
+from snowflake.snowpark.context import get_active_session
 
 # App title
 st.title("Minimal Streamlit App in Snowflake")
 
-# Connect to Snowflake using the built-in connection
-conn = st.experimental_connection("snowflake")
+# Get the active Snowflake session
+session = get_active_session()
 
 # Run a simple query
-df = conn.query("SELECT CURRENT_DATE AS today, CURRENT_VERSION() AS version;")
+df = session.sql("SELECT CURRENT_DATE AS today, CURRENT_VERSION() AS version").to_pandas()
 
 # Display results
 st.write("Snowflake Info:")
